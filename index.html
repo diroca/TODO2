@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="todo"><!--aqui dice que es de angular y este nombre debe ser igual a de controller-->
+<head>
+  <meta charset="utf-8">
+  <title>Hola To Do</title>
+  <link rel="shortcut icon" href="img/icono.jpg" type="image/png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="js/controller.js"></script>
+  <script src="js/angular-local-storage.min.js"></script>
+</head>
+<style>
+  .historia {
+    list-style: none;
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    background-color:#9CCC65;
+    border: 0px;}
+  .titulo{
+    margin-top: -2%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    background-repeat: no-repeat;
+  }
+  .caja{
+    margin-top: 2%;
+    border-radius: 21px 21px 21px 21px;
+    -moz-border-radius: 21px 21px 21px 21px;
+    -webkit-border-radius: 21px 21px 21px 21px;
+    border: 0px solid #000000;
+    background:rgba(156, 204, 102, 0.88);
+  }
+</style>
+  <body ng-controller="todocontroller" style="background-color:#000000"><!--"nombre de los controladores en el archivo controller.js y asi ejecute lo que dices dicho codigo-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="nav navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbartodo" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <center><p class="navbar-text navbar-left ">To Do</p></center>
+        </div>
+        <div class="collapse navbar-collapse navbartodo">
+          <ul class="nav navbar-nav">
+            <li class="active"><a class="glyphicon glyphicon-home" href="#"> Home<span class="sr-only">(current)</span></a></li>
+            <li><a class="glyphicon glyphicon-list-alt" href="#"> Proyectos</a></li>
+            <li><a class="glyphicon glyphicon-map-marker" href="#"> Contactenos</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" class="glyphicon glyphicon-question-sign"></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <img src="img/fondo.jpeg" class="img-responsive titulo">
+      <div class="container caja">
+        <center><h2>Bienvenido</h2></center>
+          {{"Hola " + nombre}}<!--lo que va en comillas mostrara texto normal", + sirve para agrupar variables, nombre variable asignada en controller.js-->
+          <br><br>
+            <form name="frm" ng-submit="agregarcomentario()">
+            <input class="input-sm" placeholder="Escribe aqui" autofocus type="text" ng-model="nuevocomentario.comentario" required/>
+            <button class="btn btn-primary" ng-disabled="frm.invalid">Agregar</button>
+            </form>
+        <br><button class="btn btn-danger" ng-click="eliminartodo()">Eliminar Todo</button>
+        <center><h3>Historial  del To do</h3></center>
+            <ul class="list-group" style="overflow: hidden">
+              <li class="list-group-item historia" ng-repeat="comentario in comentarios">{{comentario.comentario}}
+                <button ng-click="delete(comentario)" name="delete" class="btn btn-danger btn-sm glyphicon glyphicon-trash"></button>
+              </li>
+            </ul>
+      </div>
+  </body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>
